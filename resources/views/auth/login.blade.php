@@ -60,7 +60,7 @@
                             </div>
                         </form>
                     </div>
-                <_div>
+                </div>
             </div>
         </div>
     </div>
