@@ -8,6 +8,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Profile;
+// 以下の1行を追加することで、Profile_History Modelを扱える
+use App\Models\ProfileHistory;
+// 以下の1行を追加することで時刻を扱える
+use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
@@ -33,7 +37,7 @@ class ProfileController extends Controller
     }
     
     public function edit(Request $request)
-    {
+    {   // id=8
         // Profile Modelからデータを取得
         $profile = Profile::find($request->id);
         if (empty($profile)) {
@@ -57,6 +61,12 @@ class ProfileController extends Controller
         // 該当するデータを上書きして保存する
         $profile->fill($profile_form)->save();
         
+        // ProfileHistory Modelに編集履歴を追加
+        $profile_history = new ProfileHistory();
+        $profile_history->profile_id = $profile->id;
+        $profile_history->edited_at = Carbon::now();
+        $profile_history->save();
+        
         return redirect('admin/news');
     }
     
@@ -68,6 +78,6 @@ class ProfileController extends Controller
         // 削除する
         $profile->delete();
         
-        return redirect('admin/profile/edit');
+        return redirect('admin/news');
     }
 }

@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 // 以下の1行を追記することで、News Modelが扱えるようになる
 use App\Models\News;
+// 以下の1行を追加することで、History Modelを扱える
+use App\Models\History;
+// 以下の1行を追加することで時刻を扱える
+use Carbon\Carbon;
 
 class NewsController extends Controller
 {
@@ -91,6 +95,12 @@ class NewsController extends Controller
         
         // 該当するデータを上書きして保存する
         $news->fill($news_form)->save();
+        
+        // History Modelに編集履歴を追加
+        $history = new History();
+        $history->news_id = $news->id;
+        $history->edited_at = Carbon::now();
+        $history->save();
         
         return redirect('admin/news');
     }
