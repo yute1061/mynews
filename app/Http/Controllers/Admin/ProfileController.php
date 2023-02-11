@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Profile;
-// 以下の1行を追加することで、Profile_History Modelを扱える
+// 以下の1行を追加することで、ProfileHistory Modelを扱える
 use App\Models\ProfileHistory;
 // 以下の1行を追加することで時刻を扱える
 use Carbon\Carbon;
