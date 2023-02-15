@@ -3,6 +3,7 @@
 @section('title', 'ニュース投稿 techboost')
 
 @section('content')
+<p align="center">最新のニュース情報をお伝えします</p>
     <div class="container">
         <hr color="#c0c0c0">
         @if (!is_null($headline))
@@ -56,6 +57,5 @@
                 @endforeach
             </div>
         </div>
-    </div>
     </div>
 @endsection

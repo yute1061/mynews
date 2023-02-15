@@ -23,9 +23,13 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2" for="gender">性別</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-cotrol" name="gender" value="{{ $profile_form->gender }}">
-                        </div>
+                        @if($profile_form->gender == 'male' )
+                             <label><input type="radio" class="radio" name="gender" value="男" checked>男性</label>
+                             <label><input type="radio" class="radio" name="gender" value="女">女性</label>
+                        @else
+                             <label><input type="radio" class="radio" name="gender" value="男">男性</label>
+                             <label><input type="radio" class="radio" name="gender" value="女" checked>女性</label>
+                        @endif
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2" for="hobby">趣味</label>
